@@ -1,0 +1,19 @@
+.searchPokemon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.search {
+    border-radius: 4px;
+}
+
+.botao {
+    background-color: #3359ec;
+    padding: 10px;
+    width: 16px; 
+    height: 16px;
+    color: #fff;
+    border-radius: 5px;
+    margin-left: 2px;
+}

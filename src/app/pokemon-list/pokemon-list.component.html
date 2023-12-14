@@ -1,0 +1,12 @@
+<div class="titulo">
+    Pokédex
+</div>
+
+<app-pokemon-search></app-pokemon-search>
+
+<div class="pokemon-list">
+    <app-pokemon-card *ngFor="let pokemon of pokemonService.pokemons; index as i" [pokemon]="pokemon.name" [numero]="i + 1" [url]="pokemon.url">
+    </app-pokemon-card>
+</div>
+
+
