@@ -6,7 +6,8 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class PokemonService {
-  pokemons = [] as any[];
+  originalPokemons: any[] = [];
+  pokemons: any[] = [];
 
   constructor(private httpClient: HttpClient) {
     this.carregarPokemons();
@@ -16,21 +17,32 @@ export class PokemonService {
       this.httpClient.get<any>('https://pokeapi.co/api/v2/pokemon?limit=152')
     );
 
-    this.pokemons = requisicao.results;
+    this.originalPokemons = requisicao.results;
+    this.atualizarLista();
   }
 
   buscarPokemonPorNome(nome: string): any | undefined {
-    let result = this.pokemons.map((pokemonio, index) => {
-      if (pokemonio.name === nome) {
+    let result = this.pokemons.map((pokemon, index) => {
+      if (pokemon.name === nome) {
         return {
-          ...pokemonio,
+          ...pokemon,
           idx: index + 1,
         };
       }
     });
+
     this.pokemons = result.filter(Boolean);
     return result.filter(Boolean);
   }
+
+  restaurarListaCompleta() {
+    this.atualizarLista();
+  }
+
+  private atualizarLista() {
+    this.pokemons = [...this.originalPokemons];
+  }
+
   listPokemon() {
     return this.pokemons;
   }

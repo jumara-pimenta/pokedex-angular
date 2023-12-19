@@ -21,4 +21,10 @@ export class PokemonSearchComponent {
       this.searchTerm
     );
   }
+
+  restaurarListaCompleta() {
+    this.pokemonService.restaurarListaCompleta();
+    this.searchTerm = '';
+    this.foundPokemon = undefined;
+  }
 }
